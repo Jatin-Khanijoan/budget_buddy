@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
-import 'json/home_json.dart';
-import 'json/day_month.dart';
-import 'HomeTab.dart';
-
 
 class Analytics extends StatefulWidget {
   const Analytics({Key? key}) : super(key: key);
@@ -14,7 +10,11 @@ class Analytics extends StatefulWidget {
 }
 
 final data = <String, double>{
-  
+  "Education": 5000,
+  "Entertainment": 3000,
+  "Travel": 2000,
+  "Food": 2000,
+  "Shopping": 4000,
 };
 
 class _AnalyticsState extends State<Analytics> {
@@ -83,3 +83,5 @@ class _AnalyticsState extends State<Analytics> {
     );
   }
 }
+
+

@@ -1,6 +1,6 @@
 import 'package:budget_buddy/SignUpScreen.dart';
-import 'package:budget_buddy/utils/colors.dart';
 import 'package:flutter/material.dart';
+
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -15,30 +15,35 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox( 
             height:10 ),
             
-              Text(
+              const Text(
               'Realize your\npotential\neverywhere',
               style: TextStyle(fontSize: 40, color: Colors.black87, fontWeight: FontWeight.w800, 
             ),),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             
               Text('Your BudgetBuddy account is your\nkey to unlock a universe of opportunities', style: TextStyle(fontSize: 20, color: Colors.black54, fontWeight: FontWeight.w700),),
            
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
              
-            FloatingActionButton(
-               backgroundColor: buttonColor,
+            Row( 
+              children: [ 
+                const SizedBox( width: 318),
+                FloatingActionButton(
+               backgroundColor: Colors.white,
                
-               elevation: 50,
+               elevation: 0,
                onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
                },
-               child: Icon(
+               child: const Icon(
                 Icons.arrow_forward,
                  size: 35,
                  color: Colors.black,
                 ),
               ),
+              ]
+              )
           ],
         ),
       ),

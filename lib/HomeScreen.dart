@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'json/home_json.dart';
-import 'json/day_month.dart';
 import 'package:budget_buddy/Analytics.dart';
 import 'Add.dart';
 import 'HomeTab.dart';
-
-
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -37,43 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () {
-              // Add notification icon functionality here
             },
           ),
         ],
       ),
-      // drawer: Drawer(
-      //   child: ListView(
-      //     padding: EdgeInsets.zero,
-      //     children: <Widget>[
-      //       DrawerHeader(
-      //         decoration: BoxDecoration(
-      //           color: Theme.of(context).primaryColor,
-      //         ),
-      //         child: const Text(
-      //           'Dashboard',
-      //           style: TextStyle(
-      //             color: Colors.white,
-      //             fontSize: 24,
-      //           ),
-      //         ),
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 1'),
-      //         onTap: () {
-      //           // Add navigation to item 1 here
-      //         },
-      //       ),
-      //       ListTile(
-      //         title: const Text('Item 2'),
-      //         onTap: () {
-      //           // Add navigation to item 2 here
-      //         },
-      //       ),
-      //       // Add more dashboard items as needed
-      //     ],
-      //   ),
-      // ),
+      
       body: _screens[_currentPageIndex],
       bottomNavigationBar: Container(
   decoration: const BoxDecoration(
@@ -134,44 +98,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                

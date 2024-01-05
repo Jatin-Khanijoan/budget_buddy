@@ -51,6 +51,8 @@ dev_dependencies:
   dynamic_color: ^1.6.7
   pie_chart: ^5.3.2
   curved_navigation_bar: ^1.0.3
+  http: ^1.1.0
+
   
 
 
@@ -71,12 +73,6 @@ flutter:
     - assets/icons/bbr.png
     - assets/images/enhance.png
     - assets/icons/BB.jpg
-    - assets/images/auto.png
-    - assets/images/bank.png
-    - assets/images/charity.png
-    - assets/images/eating.png
-    - assets/images/gift.png
-    - assets/images/next.png
     
 
 

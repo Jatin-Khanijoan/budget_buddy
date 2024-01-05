@@ -1,8 +1,7 @@
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'utils/Transactions.dart';
-import 'package:budget_buddy/json/home_json.dart';
 import 'package:budget_buddy/json/day_month.dart';
-
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -12,7 +11,33 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-    int activeDay = 27;
+
+  List daily = [];
+  Future<void> fetchTransactions() async {
+    try {
+      final response = await http.get(Uri.parse('http://192.168.230.6:8080/api/transactions/getAll?userId=1'));
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        final List<dynamic> data = json.decode(response.body);
+        daily = data;
+        print('Hello');
+        print(daily);
+        } else {
+        print('Failed to load transactions. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+    }
+  }
+
+    @override
+  void initState() {
+    super.initState();
+    fetchTransactions();
+  }
+    int activeDay = 3;
+    int index = 7;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +52,10 @@ class _HomeTabState extends State<HomeTab> {
       child: Column(
         children: [
           Container(
-            decoration: BoxDecoration(color: Colors.white10, 
+            decoration: const BoxDecoration(color: Colors.white10, 
             boxShadow: [
               BoxShadow(
-                color: Colors.grey,
+                color: Colors.white70,
                 spreadRadius: 10,
                 blurRadius: 4,
                 
@@ -41,7 +66,7 @@ class _HomeTabState extends State<HomeTab> {
                   top: 20, right: 20, left: 20, bottom: 40),
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
@@ -51,10 +76,10 @@ class _HomeTabState extends State<HomeTab> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                      Icon(Icons.abc)
+                      
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Row(
@@ -72,9 +97,9 @@ class _HomeTabState extends State<HomeTab> {
                               children: [
                                 Text(
                                   days[index]['label'],
-                                  style: TextStyle(fontSize: 10),
+                                  style: const TextStyle(fontSize: 10),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Container(
@@ -110,13 +135,18 @@ class _HomeTabState extends State<HomeTab> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
                 children: List.generate(daily.length, (index) {
+                  print("Printing something");
+                  print(daily[index]['amount']);
+                   print(daily[index]['amount']);
+                  
+
               return Column(
                 children: [
                   Row(
@@ -129,19 +159,12 @@ class _HomeTabState extends State<HomeTab> {
                             Container(
                               width: 50,
                               height: 50,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.pinkAccent,
                               ),
-                              child: Center(
-                                child: Image.asset(
-                                  daily[index]['icon'],
-                                  width: 30,
-                                  height: 30,
-                                ),
-                              ),
                             ),
-                            SizedBox(width: 15),
+                            const SizedBox(width: 15),
                             Container(
                               width: (size.width - 90) * 0.5,
                               child: Column(
@@ -149,17 +172,17 @@ class _HomeTabState extends State<HomeTab> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    daily[index]['name'],
-                                    style: TextStyle(
+                                    daily[index]['transactionTo'],
+                                    style: const TextStyle(
                                         fontSize: 18,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w400),
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                                  SizedBox(height: 5),
+                                  const SizedBox(height: 5),
                                   Text(
-                                    daily[index]['date'],
-                                    style: TextStyle(
+                                    daily[index]['category'],
+                                    style: const TextStyle(
                                         fontSize: 12,
                                         color: Colors.white38,
                                         fontWeight: FontWeight.w400),
@@ -177,8 +200,8 @@ class _HomeTabState extends State<HomeTab> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              daily[index]['price'],
-                              style: TextStyle(
+                              daily[index]['amount'].toString(),
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 15,
                                   color: Colors.green),
@@ -188,8 +211,8 @@ class _HomeTabState extends State<HomeTab> {
                       )
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 65, top: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 65, top: 8),
                     child: Divider(
                       thickness: 0.8,
                     ),
@@ -198,11 +221,11 @@ class _HomeTabState extends State<HomeTab> {
               );
             })),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: Row(
               children: [
                 Spacer(),
